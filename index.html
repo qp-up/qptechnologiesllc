@@ -32,14 +32,14 @@
   <meta name="twitter:image" content="https://qptechnologiesllc.com/qp1.png" />
 
   <!-- Favicon: theme-aware in tab; footer uses light logo always -->
-  <link rel="icon" type="image/png" href="/logo_dark.png" media="(prefers-color-scheme: light)">
-  <link rel="icon" type="image/png" href="/logo_light.png" media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/png" href="/logo_dark.png">
-  <link rel="apple-touch-icon" href="/logo_light.png">
+  <link rel="icon" type="image/png" href="logo_dark.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="logo_light.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" href="logo_dark.png">
+  <link rel="apple-touch-icon" href="logo_light.png">
 
-  <!-- Preload hero frames -->
-  <link rel="preload" as="image" href="/qp1.png" />
-  <link rel="preload" as="image" href="/qp2.png" />
+  <!-- Preload hero frames (relative paths for GitHub Pages) -->
+  <link rel="preload" as="image" href="qp1.png" />
+  <link rel="preload" as="image" href="qp2.png" />
 
   <style>
     :root{
@@ -243,7 +243,7 @@
 
   <footer>
     <div class="foot-brand" aria-label="qp Technologies footer">
-      <img src="/logo_light.png" alt="keep up bow-tie logo" class="foot-logo" width="36" height="36" />
+      <img src="logo_light.png" alt="keep up bow-tie logo" class="foot-logo" width="36" height="36" />
       <small>© <span id="year"></span> qp Technologies LLC. All rights reserved.</small>
     </div>
     <div class="tagline">keep up™ — your map off the automatable highway.</div>
@@ -251,9 +251,9 @@
 
   <!-- ===== HERO LOOP + Smooth Scroll + Auto-hide Arrow ===== -->
   <script>
-    // Paths to your two hero frames
-    const QP1_PATH = "/qp1.png";
-    const QP2_PATH = "/qp2.png";
+    // Paths to your two hero frames (relative for GitHub Pages)
+    const QP1_PATH = "qp1.png";
+    const QP2_PATH = "qp2.png";
     const BLINK_MS = 500;
     const FADE_MS  = 140;
 
