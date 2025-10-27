@@ -11,28 +11,35 @@
   <!-- Font: Montserrat -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Meta -->
+  <!-- Canonical + Meta -->
+  <link rel="canonical" href="https://qptechnologiesllc.com/" />
   <meta name="description" content="qp Technologies LLC is a single-person AI Lab delivering consumer-centric intelligent software solutions. Transform AI from a threat into strategic advantage with calm, unobvious human insight—no hype, no code required." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#002060" />
-  <link rel="canonical" href="https://CANONICAL_URL/" />
+  <meta property="og:locale" content="en_US" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="qp Technologies LLC" />
   <meta property="og:title" content="Transform AI Into Strategic Advantage" />
   <meta property="og:description" content="Consumer-centric intelligent software solutions from a single-person AI Lab. A clear, no-hype blueprint from labor to legacy." />
-  <meta property="og:url" content="https://CANONICAL_URL/" />
-  <meta property="og:image" content="qp1.png" />
+  <meta property="og:url" content="https://qptechnologiesllc.com/" />
+  <meta property="og:image" content="https://qptechnologiesllc.com/qp1.png" />
   <meta property="og:image:alt" content="SOLO Founder — BILLIONAIRE BLUEPRINT: From Labor to Legacy (No Hype), road-trip truck visual." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Transform AI Into Strategic Advantage" />
   <meta name="twitter:description" content="Calm, unobvious human insight paired with intelligent automation." />
-  <meta name="twitter:image" content="qp1.png" />
+  <meta name="twitter:image" content="https://qptechnologiesllc.com/qp1.png" />
+
+  <!-- Favicon: theme-aware in tab; footer uses light logo always -->
+  <link rel="icon" type="image/png" href="/logo_dark.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="/logo_light.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" href="/logo_dark.png">
+  <link rel="apple-touch-icon" href="/logo_light.png">
 
   <!-- Preload hero frames -->
-  <link rel="preload" as="image" href="qp1.png" />
-  <link rel="preload" as="image" href="qp2.png" />
+  <link rel="preload" as="image" href="/qp1.png" />
+  <link rel="preload" as="image" href="/qp2.png" />
 
   <style>
     :root{
@@ -56,7 +63,7 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ===== HERO: fixed 16:9, looping images unchanged ===== */
+    /* ===== HERO: fixed 16:9, looping images ===== */
     .hero {
       width: 100vw;
       aspect-ratio: 16/9;
@@ -73,7 +80,7 @@
     }
     .overlay { pointer-events:none; opacity:0; transition:opacity 140ms linear; will-change:opacity; }
 
-    /* ===== Minimal pulsing down arrow (bottom-right) ===== */
+    /* ===== Pulsing down arrow (bottom-right) ===== */
     .scroll-hint {
       position:absolute;
       right: clamp(10px, 2.5vh, 24px);
@@ -105,7 +112,7 @@
     .divider{ height:1px; background:var(--line); margin:var(--space-3) 0; }
     .cta a, .links a{ color:var(--brand-fg); text-decoration:underline; text-underline-offset:3px; }
 
-    /* ===== Footer with logo + keep up™ ===== */
+    /* ===== Footer with light logo + keep up™ ===== */
     footer{
       color:#BFB79D; font-size:14px; text-align:center;
       border-top:1px solid rgba(254,246,215,0.12);
@@ -116,12 +123,12 @@
       display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;
     }
     .foot-logo{
-      width:36px; height:36px; object-fit:contain; filter: drop-shadow(0 0 0 rgba(0,0,0,0));
+      width:36px; height:36px; object-fit:contain;
     }
     .tagline { margin-top:8px; font-size:14px; color:#BFB79D; }
   </style>
 
-  <!-- JSON-LD -->
+  <!-- JSON-LD (Organization + Service + FAQ) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -129,14 +136,14 @@
       {
         "@type": "Organization",
         "name": "qp Technologies LLC",
-        "url": "https://CANONICAL_URL/",
-        "logo": "logo.png",
+        "url": "https://qptechnologiesllc.com/",
+        "logo": "https://qptechnologiesllc.com/logo_light.png",
         "description": "Consumer-centric intelligent software solutions."
       },
       {
         "@type": "ProfessionalService",
         "name": "AI Strategy Consulting for Ambitious Professionals",
-        "url": "https://CANONICAL_URL/",
+        "url": "https://qptechnologiesllc.com/",
         "provider": { "@type": "Organization", "name": "qp Technologies LLC" },
         "areaServed": "Worldwide",
         "serviceType": "AI Strategy, Automation Roadmapping, Career Risk Mitigation",
@@ -165,7 +172,7 @@
 <body>
   <a href="#intro" class="skip" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
 
-  <!-- ===== HERO (loop unchanged) ===== -->
+  <!-- ===== HERO (loop, 16:9) ===== -->
   <div class="hero" aria-label="Strategic blueprint visuals">
     <img id="base" class="frame" alt="Strategic blueprint visual: road-trip truck from the Billionaire Blueprint hero." loading="eager" decoding="async">
     <img id="top"  class="overlay" alt="" aria-hidden="true">
@@ -236,7 +243,7 @@
 
   <footer>
     <div class="foot-brand" aria-label="qp Technologies footer">
-      <img src="logo.png" alt="keep up bow-tie logo" class="foot-logo" width="36" height="36" />
+      <img src="/logo_light.png" alt="keep up bow-tie logo" class="foot-logo" width="36" height="36" />
       <small>© <span id="year"></span> qp Technologies LLC. All rights reserved.</small>
     </div>
     <div class="tagline">keep up™ — your map off the automatable highway.</div>
@@ -245,8 +252,8 @@
   <!-- ===== HERO LOOP + Smooth Scroll + Auto-hide Arrow ===== -->
   <script>
     // Paths to your two hero frames
-    const QP1_PATH = "qp1.png";
-    const QP2_PATH = "qp2.png";
+    const QP1_PATH = "/qp1.png";
+    const QP2_PATH = "/qp2.png";
     const BLINK_MS = 500;
     const FADE_MS  = 140;
 
@@ -276,7 +283,7 @@
       try{
         await preloadAndDecode(nextSrc);
         if(topEl.src !== nextSrc) topEl.src = nextSrc;
-        void topEl.offsetHeight;         // ensure transition is applied
+        void topEl.offsetHeight;         // ensure transition applies
         topEl.style.opacity = "1";
         setTimeout(()=>{
           if(baseEl.src !== nextSrc) baseEl.src = nextSrc;
