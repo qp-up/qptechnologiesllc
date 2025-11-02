@@ -85,7 +85,7 @@
     .scroll-hint {
       position:absolute;
       right: clamp(10px, 2.5vh, 24px);
-      bottom: clamp(10px, 2.5vh, 24px);
+      bottom: clamp(90px, 12vw, 130px);
       color: var(--brand-fg);
       text-decoration:none;
       font:500 12px/1 "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
@@ -95,6 +95,7 @@
       background:rgba(0,0,0,.14);
       backdrop-filter:saturate(120%) blur(2px);
       transition: opacity 200ms ease;
+      z-index: 20;
     }
     .scroll-hint:hover { opacity:1; }
     .scroll-arrow { width:14px; height:14px; display:inline-block; animation:pulse 1.6s ease-in-out infinite; }
@@ -102,8 +103,76 @@
     @media (prefers-reduced-motion: reduce) { .scroll-arrow{animation:none} }
     .scroll-hint.is-hidden { opacity:0; pointer-events:none; }
 
+    /* ===== Scrolling text marquee (bottom of hero) ===== */
+    .scroll-marquee {
+      position: absolute;
+      bottom: clamp(90px, 12vw, 150px);
+      left: 0;
+      right: 0;
+      height: clamp(40px, 6vw, 60px);
+      overflow: hidden;
+      pointer-events: none;
+      background: linear-gradient(to bottom, transparent, rgba(0,32,96,0.3));
+      display: flex;
+      align-items: center;
+      z-index: 10;
+    }
+    /* ===== Scrolling text marquee (header) ===== */
+    .header-marquee {
+      position: relative;
+      width: 100%;
+      height: clamp(40px, 6vw, 60px);
+      overflow: hidden;
+      pointer-events: none;
+      background: linear-gradient(to bottom, transparent, rgba(0,32,96,0.3));
+      display: flex;
+      align-items: center;
+      margin-top: clamp(20px, 3vw, 40px);
+    }
+    /* ===== Scrolling text marquee (bottom of page) ===== */
+    .footer-marquee {
+      position: relative;
+      width: 100%;
+      height: clamp(40px, 6vw, 60px);
+      overflow: hidden;
+      pointer-events: none;
+      background: linear-gradient(to top, transparent, rgba(0,32,96,0.3));
+      display: flex;
+      align-items: center;
+    }
+    .marquee-track {
+      display: flex;
+      white-space: nowrap;
+      animation: scroll-left 30s linear infinite;
+      will-change: transform;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+    }
+    .marquee-content {
+      display: inline-flex;
+      align-items: center;
+      font-family: "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+      font-size: clamp(8px, 1vw, 14px);
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #FFFFFF 0%, rgba(255,255,255,0.85) 50%, #FFFFFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding-right: 0.75em;
+      margin-right: 0;
+      text-shadow: 0 0 20px rgba(255,255,255,0.1);
+      flex-shrink: 0;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
     /* ===== Content below images ===== */
-    main { color:var(--brand-fg); background:var(--brand-bg); padding-block: var(--space-4); }
+    main { color:var(--brand-fg); background:var(--brand-bg); padding-top: 0; padding-bottom: var(--space-4); }
     .container { margin-inline:auto; max-width:var(--content-w); padding-inline:var(--space-2); }
     section + section { margin-top: var(--space-4); }
     h1,h2,h3{ line-height:1.18; margin:0 0 var(--space-2); color:var(--brand-fg); }
@@ -171,12 +240,26 @@
 </head>
 
 <body>
+  <!-- Scrolling text marquee (header) -->
+  <div class="header-marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span>
+    </div>
+  </div>
+
   <a href="#intro" class="skip" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
 
   <!-- ===== HERO (loop, 16:9) ===== -->
   <div class="hero" aria-label="Strategic blueprint visuals">
     <img id="base" class="frame" alt="Strategic blueprint visual: road-trip truck from the Billionaire Blueprint hero." loading="eager" decoding="async">
     <img id="top"  class="overlay" alt="" aria-hidden="true">
+
+    <!-- Scrolling text marquee (bottom) -->
+    <div class="scroll-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span>
+      </div>
+    </div>
 
     <!-- Pulsing down arrow (bottom-right) -->
     <a href="#intro" class="scroll-hint" aria-label="Scroll to details">
@@ -241,6 +324,13 @@
       </section>
     </div>
   </main>
+
+  <!-- Scrolling text marquee (between CTA and footer) -->
+  <div class="footer-marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span><span class="marquee-content">keep up</span>
+    </div>
+  </div>
 
   <footer>
     <div class="foot-brand" aria-label="qp Technologies footer">
