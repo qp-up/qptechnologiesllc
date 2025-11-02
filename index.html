@@ -113,9 +113,14 @@
       overflow: hidden;
       pointer-events: none;
       background: linear-gradient(to bottom, transparent, rgba(0,32,96,0.3));
-      display: flex;
+      display: none;
       align-items: center;
       z-index: 10;
+    }
+    @media (min-width: 1024px) {
+      .scroll-marquee {
+        display: flex;
+      }
     }
     /* ===== Scrolling text marquee (header) ===== */
     .header-marquee {
