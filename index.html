@@ -103,25 +103,6 @@
     @media (prefers-reduced-motion: reduce) { .scroll-arrow{animation:none} }
     .scroll-hint.is-hidden { opacity:0; pointer-events:none; }
 
-    /* ===== Scrolling text marquee (bottom of hero) ===== */
-    .scroll-marquee {
-      position: absolute;
-      bottom: clamp(90px, 12vw, 150px);
-      left: 0;
-      right: 0;
-      height: clamp(40px, 6vw, 60px);
-      overflow: hidden;
-      pointer-events: none;
-      background: linear-gradient(to bottom, transparent, rgba(0,32,96,0.3));
-      display: none;
-      align-items: center;
-      z-index: 10;
-    }
-    @media (min-width: 1024px) {
-      .scroll-marquee {
-        display: flex;
-      }
-    }
     /* ===== Scrolling text marquee (header) ===== */
     .header-marquee {
       position: relative;
