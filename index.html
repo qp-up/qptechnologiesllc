@@ -49,12 +49,10 @@
       --muted: rgba(255,255,255,0.75);
       --line: rgba(255,255,255,0.16);
 
-      /* Minimal storytelling accents (blended into navy theme) */
-      --threat: rgba(255, 74, 74, 0.98);        /* red */
+      --threat: rgba(255, 74, 74, 0.98);
       --threat-soft: rgba(255, 74, 74, 0.14);
-      --strategy: rgba(58, 220, 142, 0.98);      /* green */
+      --strategy: rgba(58, 220, 142, 0.98);
       --strategy-soft: rgba(58, 220, 142, 0.14);
-      --accent-line: rgba(255,255,255,0.12);
 
       --bp-a: rgba(255,255,255,0.09);
       --bp-c: rgba(255,255,255,0.035);
@@ -62,6 +60,11 @@
       --bp-glow: rgba(255,255,255,0.08);
 
       --marquee-sec: 80s;
+
+      --img-marquee-color: #C0C8D8;
+      --img-size: clamp(220px, 30vw, 420px);
+      --img-gap: clamp(18px, 2.6vw, 34px);
+      --img-radius: clamp(20px, 2.6vw, 34px);
 
       color-scheme: light dark;
     }
@@ -212,12 +215,6 @@
       animation: heroSpin 900ms linear infinite;
     }
     @keyframes heroSpin{ to{ transform: rotate(360deg); } }
-    .hero-loader-label{
-      font: 700 11px/1 "Montserrat", ui-sans-serif, system-ui;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.9);
-    }
     .hero-loader::before{
       content:"";
       position:absolute; inset:-40%;
@@ -280,6 +277,7 @@
       text-shadow: 0 0 20px rgba(255,255,255,0.1);
       flex-shrink:0;
     }
+
     @keyframes scroll-left{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
     main{
@@ -298,13 +296,12 @@
     .muted{ color:var(--muted); }
     .divider{ height:1px; background:var(--line); margin:var(--space-3) 0; }
 
-    /* Links: minimal, non-spammy */
     a{
       color: var(--brand-fg);
       text-decoration: none;
       border-bottom: 1px solid rgba(255,255,255,0.35);
       padding-bottom: 1px;
-      transition: border-color 180ms ease, opacity 180ms ease;
+      transition: border-color 180ms ease, opacity 180ms ease, transform 180ms ease;
     }
     a:hover{ border-color: rgba(255,255,255,0.78); opacity: 0.98; }
     a:focus-visible{
@@ -378,13 +375,9 @@
       overflow: hidden;
     }
 
-    /* Strategic, minimal storytelling color: only on key edges */
-    .card[data-tone="threat"]{
-      border-color: rgba(255,74,74,.24);
-    }
-    .card[data-tone="strategy"]{
-      border-color: rgba(58,220,142,.22);
-    }
+    .card[data-tone="threat"]{ border-color: rgba(255,74,74,.24); }
+    .card[data-tone="strategy"]{ border-color: rgba(58,220,142,.22); }
+
     .card::before{
       content:"";
       position:absolute;
@@ -450,7 +443,6 @@
       line-height: 1.6;
     }
 
-    /* Minimal inline storytelling highlight (very sparing) */
     .mark{
       display:inline;
       padding: 0.05em 0.35em;
@@ -555,21 +547,142 @@
       color: rgba(255,255,255,.86);
       line-height: 1.6;
     }
-    .choice a{
-      border-bottom-color: rgba(255,255,255,0.65);
+    .choice a{ border-bottom-color: rgba(255,255,255,0.65); }
+
+    .agents-strip{
+      position: relative;
+      width: 100%;
+      background: linear-gradient(to top, rgba(0,32,96,0.18), rgba(0,32,96,0.55));
+      backdrop-filter: saturate(115%) blur(1.5px);
+      border-top: 1px solid rgba(255,255,255,0.10);
+      flex: 0 0 auto;
+      padding-top: clamp(12px, 2.2vw, 18px);
+    }
+
+    .agents-cta{
+      display: flex;
+      justify-content: center;
+      padding-inline: var(--space-2);
+      padding-bottom: clamp(10px, 1.8vw, 14px);
+    }
+
+    .agents-cta a{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: clamp(10px, 1.6vw, 14px) clamp(14px, 2.2vw, 18px);
+      border-radius: 999px;
+      border: 1px solid rgba(192,200,216,0.55);
+      background:
+        radial-gradient(900px 60px at 20% 10%, rgba(192,200,216,0.22), transparent 60%),
+        rgba(0,0,0,0.18);
+      backdrop-filter: saturate(135%) blur(10px);
+      box-shadow: 0 18px 80px rgba(0,0,0,0.22);
+      color: rgba(255,255,255,0.98);
+      font: 700 clamp(12px, 1.4vw, 16px)/1 "Montserrat", ui-sans-serif, system-ui;
+      letter-spacing: .06em;
+      text-transform: lowercase;
+      text-decoration: none;
+      border-bottom: none;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+    .agents-cta a .accent{
+      color: var(--img-marquee-color);
+      text-shadow: 0 0 28px rgba(192,200,216,0.18);
+    }
+    .agents-cta a:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 22px 92px rgba(0,0,0,0.26);
+      border-color: rgba(192,200,216,0.78);
+    }
+    .agents-cta a:focus-visible{
+      outline: 2px solid rgba(192,200,216,0.55);
+      outline-offset: 4px;
     }
 
     .footer-marquee{
       position: relative;
       width: 100%;
-      height: clamp(40px, 6vw, 60px);
+      height: clamp(300px, 40vw, 460px);
       overflow: hidden;
-      pointer-events: none;
-      background: linear-gradient(to top, rgba(0,32,96,0.18), rgba(0,32,96,0.55));
-      backdrop-filter: saturate(115%) blur(1.5px);
       display: flex;
       align-items: center;
+    }
+
+    .footer-marquee::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(90deg,
+        rgba(0,32,96,0.70) 0%,
+        rgba(0,32,96,0.06) 16%,
+        rgba(0,32,96,0.06) 84%,
+        rgba(0,32,96,0.70) 100%);
+      pointer-events:none;
+      z-index: 0;
+    }
+
+    .img-marquee-tint{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      opacity: 0.28;
+      background: radial-gradient(1200px 90px at 50% 56%, var(--img-marquee-color), transparent 72%);
+      mix-blend-mode: screen;
+      z-index: 0;
+    }
+
+    .img-marquee-track{
+      display:flex;
+      white-space:nowrap;
+      animation: scroll-left var(--img-marquee-sec, var(--marquee-sec)) linear infinite;
+      will-change: transform;
+      align-items:center;
+      pointer-events: none;
+      position: relative;
+      z-index: 1;
+    }
+    @media (prefers-reduced-motion: reduce){ .img-marquee-track{ animation:none; } }
+
+    .img-marquee-content{
+      display:inline-flex;
+      align-items:center;
+      gap: var(--img-gap);
+      padding-inline: var(--space-2);
+      flex-shrink: 0;
+    }
+
+    .img-chip{
+      width: var(--img-size);
+      height: var(--img-size);
+      border-radius: var(--img-radius);
+      overflow: hidden;
       flex: 0 0 auto;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(192,200,216,0.34);
+      box-shadow: 0 18px 70px rgba(0,0,0,.22);
+      position: relative;
+    }
+    .img-chip::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius: inherit;
+      pointer-events:none;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.08),
+        inset 0 18px 44px rgba(255,255,255,0.055);
+      opacity: .92;
+    }
+
+    .img-chip img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit: cover;
+      transform: translateZ(0);
+      filter: saturate(104%) contrast(104%);
     }
 
     footer{
@@ -654,7 +767,7 @@
 <body>
   <div class="header-marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span>
+      <span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span>
     </div>
   </div>
 
@@ -848,11 +961,22 @@
     </div>
   </main>
 
-  <div class="footer-marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span><span class="marquee-content">keep™️</span>
+  <section class="agents-strip" aria-label="AI Agent covers">
+    <div class="agents-cta" aria-label="Shop qp.store">
+      <a href="https://qp.store" target="_blank" rel="noopener noreferrer" title="Shop AI Agents & system prompts on qp.store">
+        keep up™️ with a <span class="accent">quality prompt™️</span> →
+      </a>
     </div>
-  </div>
+
+    <div class="footer-marquee" aria-label="AI Agent covers marquee">
+      <div class="img-marquee-tint" aria-hidden="true"></div>
+
+      <div class="img-marquee-track" id="imgMarqueeTrack" aria-hidden="true">
+        <div class="img-marquee-content" id="imgMarqueeA"></div>
+        <div class="img-marquee-content" id="imgMarqueeB" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <div class="social-links" aria-label="Social Media Links">
@@ -1001,6 +1125,72 @@
       }, { root: null, rootMargin: '0px', threshold: 0.15 });
 
       observer.observe(target);
+    })();
+
+    (function () {
+      const track = document.getElementById('imgMarqueeTrack');
+      const a = document.getElementById('imgMarqueeA');
+      const b = document.getElementById('imgMarqueeB');
+      if (!track || !a || !b) return;
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) { track.style.animation = 'none'; }
+
+      const COUNT = 100;
+      const FRAG = document.createDocumentFragment();
+
+      for (let i = 1; i <= COUNT; i++) {
+        const chip = document.createElement('span');
+        chip.className = 'img-chip';
+
+        const img = document.createElement('img');
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.alt = '';
+        img.src = `qp/${i}.png`;
+
+        chip.appendChild(img);
+        FRAG.appendChild(chip);
+      }
+
+      a.appendChild(FRAG);
+      b.innerHTML = a.innerHTML;
+
+      function parseSeconds(v){
+        const n = parseFloat(String(v).trim().replace('s',''));
+        return Number.isFinite(n) ? n : 80;
+      }
+
+      function syncAgentToHeaderSpeed(){
+        if (reduce) return;
+
+        const headerTrack = document.querySelector('.header-marquee .marquee-track');
+        if (!headerTrack) return;
+
+        const rootStyle = getComputedStyle(document.documentElement);
+        const baseSec = parseSeconds(rootStyle.getPropertyValue('--marquee-sec'));
+
+        const headerDistance = headerTrack.scrollWidth / 2;
+        const agentDistance  = track.scrollWidth / 2;
+
+        if (headerDistance <= 1 || agentDistance <= 1) return;
+
+        const agentSec = baseSec * (agentDistance / headerDistance);
+        document.documentElement.style.setProperty('--img-marquee-sec', `${agentSec.toFixed(2)}s`);
+      }
+
+      const raf2 = () => requestAnimationFrame(() => requestAnimationFrame(syncAgentToHeaderSpeed));
+      raf2();
+      window.addEventListener('load', raf2, { passive: true });
+
+      let rT = null;
+      window.addEventListener('resize', () => {
+        if (rT) cancelAnimationFrame(rT);
+        rT = requestAnimationFrame(() => {
+          rT = null;
+          raf2();
+        });
+      }, { passive: true });
     })();
   </script>
 </body>
