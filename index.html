@@ -215,6 +215,12 @@
       animation: heroSpin 900ms linear infinite;
     }
     @keyframes heroSpin{ to{ transform: rotate(360deg); } }
+    .hero-loader-label{
+      font: 700 11px/1 "Montserrat", ui-sans-serif, system-ui;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.9);
+    }
     .hero-loader::before{
       content:"";
       position:absolute; inset:-40%;
@@ -277,7 +283,6 @@
       text-shadow: 0 0 20px rgba(255,255,255,0.1);
       flex-shrink:0;
     }
-
     @keyframes scroll-left{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
     main{
@@ -374,7 +379,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .card[data-tone="threat"]{ border-color: rgba(255,74,74,.24); }
     .card[data-tone="strategy"]{ border-color: rgba(58,220,142,.22); }
 
@@ -536,7 +540,6 @@
       pointer-events:none;
     }
     .choice > *{ position: relative; z-index: 1; }
-
     .choice b{
       display:inline-block;
       min-width: 132px;
@@ -552,11 +555,17 @@
     .agents-strip{
       position: relative;
       width: 100%;
-      background: linear-gradient(to top, rgba(0,32,96,0.18), rgba(0,32,96,0.55));
-      backdrop-filter: saturate(115%) blur(1.5px);
-      border-top: 1px solid rgba(255,255,255,0.10);
+      background:
+        radial-gradient(900px 120px at 50% 0%, rgba(192,200,216,0.16), transparent 68%),
+        linear-gradient(to top, rgba(0,32,96,0.14), rgba(0,32,96,0.62));
+      border-top: 1px solid rgba(192,200,216,0.18);
       flex: 0 0 auto;
       padding-top: clamp(12px, 2.2vw, 18px);
+
+      content-visibility: auto;
+      contain-intrinsic-size: 680px;
+      contain: layout paint style;
+      isolation: isolate;
     }
 
     .agents-cta{
@@ -608,6 +617,9 @@
       overflow: hidden;
       display: flex;
       align-items: center;
+
+      contain: layout paint;
+      isolation: isolate;
     }
 
     .footer-marquee::before{
@@ -615,10 +627,10 @@
       position:absolute;
       inset:0;
       background: linear-gradient(90deg,
-        rgba(0,32,96,0.70) 0%,
+        rgba(0,32,96,0.74) 0%,
         rgba(0,32,96,0.06) 16%,
         rgba(0,32,96,0.06) 84%,
-        rgba(0,32,96,0.70) 100%);
+        rgba(0,32,96,0.74) 100%);
       pointer-events:none;
       z-index: 0;
     }
@@ -627,10 +639,35 @@
       position:absolute;
       inset:0;
       pointer-events:none;
-      opacity: 0.28;
-      background: radial-gradient(1200px 90px at 50% 56%, var(--img-marquee-color), transparent 72%);
+      opacity: 0.30;
+      background:
+        radial-gradient(1200px 90px at 50% 56%, var(--img-marquee-color), transparent 72%),
+        linear-gradient(to bottom, rgba(192,200,216,0.05), transparent 55%);
       mix-blend-mode: screen;
       z-index: 0;
+    }
+
+    .img-marquee-shimmer{
+      position:absolute;
+      inset:-40%;
+      pointer-events:none;
+      z-index: 0;
+      opacity: 0;
+      background: linear-gradient(120deg,
+        transparent 0%,
+        rgba(255,255,255,.06) 45%,
+        rgba(255,255,255,.10) 50%,
+        rgba(255,255,255,.06) 55%,
+        transparent 100%);
+      transform: translateX(-40%);
+      animation: heroShimmer 1600ms ease-in-out infinite;
+      will-change: transform, opacity;
+    }
+    .footer-marquee[data-loading="1"] .img-marquee-shimmer{
+      opacity: 0.85;
+    }
+    @media (prefers-reduced-motion: reduce){
+      .img-marquee-shimmer{ animation:none; }
     }
 
     .img-marquee-track{
@@ -642,8 +679,15 @@
       pointer-events: none;
       position: relative;
       z-index: 1;
+
+      animation-play-state: paused;
     }
-    @media (prefers-reduced-motion: reduce){ .img-marquee-track{ animation:none; } }
+    .agents-strip.is-active .img-marquee-track{
+      animation-play-state: running;
+    }
+    @media (prefers-reduced-motion: reduce){
+      .img-marquee-track{ animation:none !important; }
+    }
 
     .img-marquee-content{
       display:inline-flex;
@@ -663,29 +707,11 @@
       box-shadow: 0 18px 70px rgba(0,0,0,.22);
       position: relative;
       background:
-        radial-gradient(900px 520px at 30% 20%, rgba(255,255,255,.08), transparent 55%),
-        radial-gradient(700px 460px at 70% 75%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(900px 520px at 30% 20%, rgba(255,255,255,.06), transparent 55%),
+        radial-gradient(700px 460px at 70% 75%, rgba(255,255,255,.05), transparent 60%),
         repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 22px),
         repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 1px, transparent 1px 22px),
-        rgba(0,32,96,0.70);
-      backdrop-filter: saturate(110%) blur(2px);
-    }
-
-    .img-chip::before{
-      content:"";
-      position:absolute;
-      inset:-40%;
-      background: linear-gradient(120deg,
-        transparent 0%,
-        rgba(255,255,255,.08) 45%,
-        rgba(255,255,255,.12) 50%,
-        rgba(255,255,255,.08) 55%,
-        transparent 100%);
-      transform: translateX(-40%);
-      animation: heroShimmer 1400ms ease-in-out infinite;
-      pointer-events:none;
-      z-index: 1;
-      opacity: 0.95;
+        rgba(0,32,96,0.66);
     }
 
     .img-chip::after{
@@ -696,7 +722,7 @@
       pointer-events:none;
       box-shadow:
         inset 0 0 0 1px rgba(255,255,255,0.08),
-        inset 0 18px 44px rgba(255,255,255,0.055);
+        inset 0 18px 44px rgba(255,255,255,0.045);
       opacity: .92;
       z-index: 2;
     }
@@ -717,17 +743,10 @@
 
     .img-chip.is-loaded{
       background: rgba(255,255,255,0.06);
-      backdrop-filter: none;
-    }
-    .img-chip.is-loaded::before{
-      opacity: 0;
-      animation: none;
-      transition: opacity 260ms ease;
     }
     .img-chip.is-loaded img{ opacity: 1; }
 
     @media (prefers-reduced-motion: reduce){
-      .img-chip::before{ animation:none; }
       .img-chip img{ transition:none; }
     }
 
@@ -1007,15 +1026,16 @@
     </div>
   </main>
 
-  <section class="agents-strip" aria-label="AI Agent covers">
+  <section class="agents-strip" id="agentsStrip" aria-label="AI Agent covers">
     <div class="agents-cta" aria-label="Shop qp.store">
       <a href="https://qp.store" target="_blank" rel="noopener noreferrer" title="Shop AI Agents & system prompts on qp.store">
         keep up™️ with a <span class="accent">quality prompt™️</span> →
       </a>
     </div>
 
-    <div class="footer-marquee" aria-label="AI Agent covers marquee">
+    <div class="footer-marquee" id="agentsMarquee" data-loading="1" aria-label="AI Agent covers marquee">
       <div class="img-marquee-tint" aria-hidden="true"></div>
+      <div class="img-marquee-shimmer" aria-hidden="true"></div>
 
       <div class="img-marquee-track" id="imgMarqueeTrack" aria-hidden="true">
         <div class="img-marquee-content" id="imgMarqueeA"></div>
@@ -1174,89 +1194,30 @@
     })();
 
     (function () {
+      const strip = document.getElementById('agentsStrip');
+      const marquee = document.getElementById('agentsMarquee');
       const track = document.getElementById('imgMarqueeTrack');
       const a = document.getElementById('imgMarqueeA');
       const b = document.getElementById('imgMarqueeB');
-      if (!track || !a || !b) return;
+      if (!strip || !marquee || !track || !a || !b) return;
 
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduce) { track.style.animation = 'none'; }
 
       const COUNT = 100;
-      const FRAG = document.createDocumentFragment();
-
+      const frag = document.createDocumentFragment();
       for (let i = 1; i <= COUNT; i++) {
         const chip = document.createElement('span');
         chip.className = 'img-chip';
-
         const img = document.createElement('img');
         img.loading = 'lazy';
         img.decoding = 'async';
         img.alt = '';
         img.dataset.src = `qp/${i}.png`;
-
         chip.appendChild(img);
-        FRAG.appendChild(chip);
+        frag.appendChild(chip);
       }
-
-      a.appendChild(FRAG);
-
+      a.appendChild(frag);
       b.innerHTML = a.innerHTML;
-
-      function markLoaded(img){
-        const chip = img.closest('.img-chip');
-        if (chip) chip.classList.add('is-loaded');
-      }
-
-      function wire(img){
-        const done = () => {
-          if (img.decode) img.decode().catch(()=>{}).finally(()=>markLoaded(img));
-          else markLoaded(img);
-        };
-        img.addEventListener('load', done, { once:true });
-        img.addEventListener('error', () => markLoaded(img), { once:true });
-      }
-
-      const allImgs = Array.from(track.querySelectorAll('img[data-src]'));
-      allImgs.forEach(wire);
-
-      const queue = allImgs.slice();
-      const FIRST = 12;
-
-      for (let i = 0; i < FIRST && queue.length; i++) {
-        const im = queue.shift();
-        im.src = im.dataset.src;
-        im.removeAttribute('data-src');
-        try { im.fetchPriority = 'high'; } catch {}
-      }
-
-      function pump(deadline){
-        let budgetOk = true;
-        let loaded = 0;
-        while (queue.length && budgetOk) {
-          const im = queue.shift();
-          im.src = im.dataset.src;
-          im.removeAttribute('data-src');
-          try { im.fetchPriority = 'low'; } catch {}
-          loaded++;
-
-          if (deadline && typeof deadline.timeRemaining === 'function') {
-            budgetOk = deadline.timeRemaining() > 8 && loaded < 8;
-          } else {
-            budgetOk = loaded < 6;
-          }
-        }
-        if (queue.length) schedule();
-      }
-
-      function schedule(){
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(pump, { timeout: 650 });
-        } else {
-          setTimeout(() => pump(null), 40);
-        }
-      }
-      schedule();
 
       function parseSeconds(v){
         const n = parseFloat(String(v).trim().replace('s',''));
@@ -1281,18 +1242,116 @@
         document.documentElement.style.setProperty('--img-marquee-sec', `${agentSec.toFixed(2)}s`);
       }
 
-      const raf2 = () => requestAnimationFrame(() => requestAnimationFrame(syncAgentToHeaderSpeed));
-      raf2();
-      window.addEventListener('load', raf2, { passive: true });
+      let started = false;
+      let active = false;
+
+      const imgs = Array.from(track.querySelectorAll('img[data-src]'));
+      let queue = imgs.slice();
+
+      let inFlight = 0;
+      const MAX_IN_FLIGHT = 3;
+      const DECODE_FIRST = 14;
+
+      let loadedCount = 0;
+      const LOADING_MIN = 18;
+
+      function markLoaded(img){
+        const chip = img.closest('.img-chip');
+        if (chip) chip.classList.add('is-loaded');
+        loadedCount++;
+        if (loadedCount >= LOADING_MIN) marquee.setAttribute('data-loading', '0');
+      }
+
+      function loadOne(img, shouldDecode){
+        return new Promise((resolve) => {
+          const done = () => {
+            if (shouldDecode && img.decode) {
+              img.decode().catch(()=>{}).finally(() => { markLoaded(img); resolve(); });
+            } else {
+              markLoaded(img);
+              resolve();
+            }
+          };
+          img.addEventListener('load', done, { once:true });
+          img.addEventListener('error', () => { markLoaded(img); resolve(); }, { once:true });
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+        });
+      }
+
+      async function pump(){
+        if (!active) return;
+        while (active && inFlight < MAX_IN_FLIGHT && queue.length) {
+          const img = queue.shift();
+          const shouldDecode = (loadedCount < DECODE_FIRST);
+          inFlight++;
+          loadOne(img, shouldDecode).finally(() => {
+            inFlight--;
+            if (active) pump();
+          });
+        }
+      }
+
+      function startLoading(){
+        if (started) return;
+        started = true;
+        marquee.setAttribute('data-loading', '1');
+
+        const prime = Math.min(10, queue.length);
+        for (let i = 0; i < prime; i++) {
+          const img = queue.shift();
+          if (!img) break;
+          inFlight++;
+          loadOne(img, true).finally(() => {
+            inFlight--;
+            if (active) pump();
+          });
+        }
+      }
+
+      function setActive(on){
+        active = on && !reduce;
+        if (active) {
+          strip.classList.add('is-active');
+          startLoading();
+          pump();
+          requestAnimationFrame(() => requestAnimationFrame(syncAgentToHeaderSpeed));
+        } else {
+          strip.classList.remove('is-active');
+        }
+      }
+
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          const e = entries[0];
+          if (!e) return;
+          if (e.isIntersecting) setActive(true);
+          else setActive(false);
+        }, { root: null, rootMargin: '280px 0px', threshold: 0.01 });
+        io.observe(marquee);
+      } else {
+        setActive(true);
+      }
+
+      window.addEventListener('load', () => {
+        requestAnimationFrame(() => requestAnimationFrame(syncAgentToHeaderSpeed));
+      }, { passive:true });
 
       let rT = null;
       window.addEventListener('resize', () => {
         if (rT) cancelAnimationFrame(rT);
         rT = requestAnimationFrame(() => {
           rT = null;
-          raf2();
+          requestAnimationFrame(() => requestAnimationFrame(syncAgentToHeaderSpeed));
         });
-      }, { passive: true });
+      }, { passive:true });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) setActive(false);
+        else {
+          if (!('IntersectionObserver' in window)) setActive(true);
+        }
+      }, { passive:true });
     })();
   </script>
 </body>
