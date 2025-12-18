@@ -49,6 +49,13 @@
       --muted: rgba(255,255,255,0.75);
       --line: rgba(255,255,255,0.16);
 
+      /* Minimal storytelling accents (blended into navy theme) */
+      --threat: rgba(255, 74, 74, 0.98);        /* red */
+      --threat-soft: rgba(255, 74, 74, 0.14);
+      --strategy: rgba(58, 220, 142, 0.98);      /* green */
+      --strategy-soft: rgba(58, 220, 142, 0.14);
+      --accent-line: rgba(255,255,255,0.12);
+
       --bp-a: rgba(255,255,255,0.09);
       --bp-c: rgba(255,255,255,0.035);
       --bp-d: rgba(255,255,255,0.10);
@@ -66,7 +73,6 @@
       min-height: 100svh;
       display: flex;
       flex-direction: column;
-
       font-family: "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
@@ -130,10 +136,7 @@
       animation: bp-drift 26s ease-in-out infinite;
     }
 
-    body > *{
-      position: relative;
-      z-index: 1;
-    }
+    body > *{ position: relative; z-index: 1; }
 
     @keyframes bp-drift{
       0%   { background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0; }
@@ -141,9 +144,7 @@
       100% { background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0; }
     }
 
-    @media (prefers-reduced-motion: reduce){
-      body::before{ animation: none; }
-    }
+    @media (prefers-reduced-motion: reduce){ body::before{ animation:none; } }
 
     .header-marquee{
       position: relative;
@@ -157,13 +158,7 @@
       margin-top: 0;
       flex: 0 0 auto;
     }
-    .header-marquee::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: var(--brand-bg);
-      z-index: 0;
-    }
+    .header-marquee::before{ content:""; position:absolute; inset:0; background:var(--brand-bg); z-index:0; }
     .header-marquee > *{ position: relative; z-index: 1; }
 
     .hero{
@@ -207,15 +202,9 @@
       z-index: 3;
       backdrop-filter: saturate(110%) blur(2px);
     }
-    .hero.is-ready .hero-loader{
-      opacity: 0;
-      visibility: hidden;
-    }
+    .hero.is-ready .hero-loader{ opacity: 0; visibility: hidden; }
     .hero-loader-inner{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap: 12px;
+      display:flex; flex-direction:column; align-items:center; gap:12px;
       padding: 16px 18px;
       border: 1px solid rgba(255,255,255,.16);
       border-radius: 999px;
@@ -249,13 +238,10 @@
       transform: translateX(-40%);
       animation: heroShimmer 1400ms ease-in-out infinite;
     }
-    @keyframes heroShimmer{
-      0%{ transform: translateX(-40%) }
-      100%{ transform: translateX(40%) }
-    }
+    @keyframes heroShimmer{ 0%{ transform: translateX(-40%) } 100%{ transform: translateX(40%) } }
     @media (prefers-reduced-motion: reduce){
-      .hero .frame{ transition: none; }
-      .hero-loader::before, .hero-spinner{ animation: none; }
+      .hero .frame{ transition:none; }
+      .hero-loader::before, .hero-spinner{ animation:none; }
     }
 
     .scroll-hint{
@@ -280,34 +266,29 @@
     .scroll-hint.is-hidden{ opacity:0; pointer-events:none; }
 
     .marquee-track{
-      display: flex;
-      white-space: nowrap;
+      display:flex;
+      white-space:nowrap;
       animation: scroll-left var(--marquee-sec) linear infinite;
       will-change: transform;
     }
-    @media (prefers-reduced-motion: reduce){ .marquee-track { animation: none; } }
+    @media (prefers-reduced-motion: reduce){ .marquee-track{ animation:none; } }
 
     .marquee-content{
-      display: inline-flex;
-      align-items: center;
-      font-family: "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+      display:inline-flex;
+      align-items:center;
+      font-family:"Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
       font-size: clamp(8px, 1vw, 14px);
-      font-weight: 700;
-      color: #FFFFFF;
-      letter-spacing: 0.08em;
+      font-weight:700;
+      letter-spacing:0.08em;
       background: linear-gradient(135deg, #FFFFFF 0%, rgba(255,255,255,0.85) 50%, #FFFFFF 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
       padding-right: 0.75em;
       text-shadow: 0 0 20px rgba(255,255,255,0.1);
-      flex-shrink: 0;
+      flex-shrink:0;
     }
-
-    @keyframes scroll-left{
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+    @keyframes scroll-left{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
     main{
       color: var(--brand-fg);
@@ -316,6 +297,7 @@
       padding-bottom: var(--space-4);
       flex: 1 0 auto;
     }
+
     .container{ margin-inline:auto; max-width:var(--content-w); padding-inline:var(--space-2); }
     section + section{ margin-top: var(--space-4); }
     h1,h2,h3{ line-height:1.18; margin:0 0 var(--space-2); color:var(--brand-fg); }
@@ -323,7 +305,267 @@
     ul{ padding-left:1.1em; }
     .muted{ color:var(--muted); }
     .divider{ height:1px; background:var(--line); margin:var(--space-3) 0; }
-    .cta a, .links a{ color:var(--brand-fg); text-decoration:underline; text-underline-offset:3px; }
+
+    /* Links: minimal, non-spammy */
+    a{
+      color: var(--brand-fg);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.35);
+      padding-bottom: 1px;
+      transition: border-color 180ms ease, opacity 180ms ease;
+    }
+    a:hover{ border-color: rgba(255,255,255,0.78); opacity: 0.98; }
+    a:focus-visible{
+      outline: 2px solid rgba(255,255,255,0.35);
+      outline-offset: 3px;
+      border-bottom-color: transparent;
+      border-radius: 8px;
+    }
+
+    .eyebrow{
+      font: 700 12px/1 "Montserrat", ui-sans-serif, system-ui;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.78);
+      margin-bottom: 10px;
+    }
+    .lead{
+      font-size: clamp(16px, 2.1vw, 18px);
+      line-height: 1.65;
+      color: rgba(255,255,255,.92);
+      max-width: 74ch;
+    }
+
+    .kicker{
+      display:flex; flex-wrap:wrap; gap:10px;
+      align-items:center;
+      margin-top: 10px;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.10);
+      backdrop-filter: saturate(130%) blur(6px);
+      color: rgba(255,255,255,.86);
+      font: 600 12px/1 "Montserrat", ui-sans-serif, system-ui;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .dot{
+      width: 6px; height: 6px; border-radius: 999px;
+      background: rgba(255,255,255,.55);
+      box-shadow: 0 0 18px rgba(255,255,255,.12);
+      flex: 0 0 auto;
+    }
+    .dot.threat{ background: var(--threat); box-shadow: 0 0 18px rgba(255, 74, 74, .20); }
+    .dot.strategy{ background: var(--strategy); box-shadow: 0 0 18px rgba(58, 220, 142, .18); }
+
+    .grid{
+      display:grid;
+      gap: clamp(12px, 2vw, 16px);
+      margin-top: var(--space-2);
+    }
+    .grid-3{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 880px){
+      .grid-3{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.10);
+      backdrop-filter: saturate(130%) blur(8px);
+      border-radius: 18px;
+      padding: clamp(14px, 2.3vw, 18px);
+      box-shadow: 0 14px 60px rgba(0,0,0,.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Strategic, minimal storytelling color: only on key edges */
+    .card[data-tone="threat"]{
+      border-color: rgba(255,74,74,.24);
+    }
+    .card[data-tone="strategy"]{
+      border-color: rgba(58,220,142,.22);
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      left: 0;
+      top: 12px;
+      bottom: 12px;
+      width: 2px;
+      background: rgba(255,255,255,0.10);
+      border-radius: 999px;
+    }
+    .card[data-tone="threat"]::before{
+      background: linear-gradient(to bottom, var(--threat), rgba(255,74,74,0.06));
+    }
+    .card[data-tone="strategy"]::before{
+      background: linear-gradient(to bottom, var(--strategy), rgba(58,220,142,0.06));
+    }
+
+    .card h3{
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.92);
+    }
+    .card p{
+      margin: 0;
+      color: rgba(255,255,255,.86);
+      line-height: 1.65;
+    }
+    .card ul{ margin: 10px 0 0; padding-left: 1.05em; }
+    .card li{ margin: 0 0 8px; color: rgba(255,255,255,.84); }
+
+    .steps{
+      list-style: none;
+      padding: 0;
+      margin: var(--space-2) 0 0;
+      display: grid;
+      gap: 12px;
+    }
+    .step{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 12px 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,.08);
+      backdrop-filter: saturate(130%) blur(6px);
+    }
+    .step .n{
+      flex: 0 0 auto;
+      width: 30px; height: 30px;
+      border-radius: 999px;
+      display:grid; place-items:center;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.92);
+      font: 700 12px/1 "Montserrat", ui-sans-serif, system-ui;
+    }
+    .step .t{
+      margin: 0;
+      color: rgba(255,255,255,.92);
+      line-height: 1.6;
+    }
+
+    /* Minimal inline storytelling highlight (very sparing) */
+    .mark{
+      display:inline;
+      padding: 0.05em 0.35em;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+    .mark.threat{
+      border-color: rgba(255,74,74,0.22);
+      background: linear-gradient(180deg, rgba(255,74,74,0.18), rgba(255,74,74,0.08));
+    }
+    .mark.strategy{
+      border-color: rgba(58,220,142,0.20);
+      background: linear-gradient(180deg, rgba(58,220,142,0.16), rgba(58,220,142,0.07));
+    }
+
+    .cta-panel{
+      border: 1px solid rgba(255,255,255,.18);
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(255,255,255,.08), transparent 55%),
+        radial-gradient(700px 450px at 85% 80%, rgba(255,255,255,.06), transparent 60%),
+        rgba(0,0,0,.10);
+      backdrop-filter: saturate(140%) blur(10px);
+      border-radius: 22px;
+      padding: clamp(16px, 2.6vw, 22px);
+      box-shadow: 0 18px 70px rgba(0,0,0,.22);
+    }
+    .cta-title{
+      margin: 0;
+      font-size: clamp(18px, 2.4vw, 22px);
+      letter-spacing: .01em;
+    }
+    .cta-sub{
+      margin: 10px 0 0;
+      color: rgba(255,255,255,.86);
+      line-height: 1.65;
+      max-width: 76ch;
+    }
+    .cta-email{
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,.14);
+      display:grid;
+      gap: 10px;
+    }
+    .email-line{
+      display:flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .email-label{
+      font: 700 12px/1 "Montserrat", ui-sans-serif, system-ui;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.78);
+    }
+    .email-value{
+      font: 700 clamp(18px, 2.2vw, 22px)/1.2 "Montserrat", ui-sans-serif, system-ui;
+      letter-spacing: .02em;
+    }
+    .email-note{
+      margin: 0;
+      color: rgba(255,255,255,.84);
+      line-height: 1.65;
+    }
+    .cta-choices{
+      margin-top: 10px;
+      display:grid;
+      gap: 10px;
+    }
+    .choice{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .choice::before{
+      content:"";
+      position:absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,0.05), transparent 40%, transparent 60%, rgba(255,255,255,0.035));
+      opacity: .9;
+      pointer-events:none;
+    }
+    .choice > *{ position: relative; z-index: 1; }
+
+    .choice b{
+      display:inline-block;
+      min-width: 132px;
+      color: rgba(255,255,255,.95);
+      letter-spacing: .02em;
+    }
+    .choice span{
+      color: rgba(255,255,255,.86);
+      line-height: 1.6;
+    }
+    .choice a{
+      border-bottom-color: rgba(255,255,255,0.65);
+    }
 
     .footer-marquee{
       position: relative;
@@ -362,28 +604,19 @@
       color: rgba(255,255,255,0.7);
       transition: color 0.2s ease, transform 0.2s ease;
       display: inline-flex;
+      text-decoration: none;
+      border-bottom: none;
+      padding-bottom: 0;
     }
     .social-links a:hover{
       color: #FFFFFF;
       transform: translateY(-2px);
     }
-    .social-links svg{
-      width: 22px;
-      height: 22px;
-      fill: currentColor;
-    }
+    .social-links svg{ width: 22px; height: 22px; fill: currentColor; }
 
-    .foot-brand{
-      display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;
-    }
-    .foot-logo{
-      width:36px; height:36px; object-fit:contain;
-    }
-    .tagline{
-      margin-top:8px;
-      font-size:14px;
-      color:rgba(255,255,255,0.7);
-    }
+    .foot-brand{ display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
+    .foot-logo{ width:36px; height:36px; object-fit:contain; }
+    .tagline{ margin-top:8px; font-size:14px; color:rgba(255,255,255,0.7); }
   </style>
 
   <script type="application/ld+json">
@@ -457,38 +690,123 @@
   <main>
     <div class="container">
       <section id="intro">
+        <div class="eyebrow">keep™️</div>
         <h1>Transform AI Into Your Strategic Advantage</h1>
-        <p class="muted">keep™ — cutting-edge, consumer-centric, Intelligent Software Solutions.</p>
+        <p class="lead">A calm, no-hype operating system for ambitious professionals—so you stay on the side of leverage, not replacement.</p>
+        <div class="kicker" aria-label="Key signals">
+          <span class="pill"><span class="dot"></span>No code required</span>
+          <span class="pill"><span class="dot threat"></span>Threat: AUTOMATION</span>
+          <span class="pill"><span class="dot strategy"></span>Strategy: AUGMENTATION</span>
+        </div>
+        <p class="muted" style="margin-top: var(--space-2);">keep™ — cutting-edge, consumer-centric, Intelligent Software Solutions.</p>
       </section>
 
       <section id="hook">
-        <h2>The Breakthrough Promise</h2>
-        <p>I work with ambitious professionals to transform AI from an existential career threat into their ultimate strategic advantage—securing career dominance, without deciphering technical jargon or navigating the paralyzing hype.</p>
+        <div class="eyebrow">The promise</div>
+        <h2>AI isn’t your threat. Unclear strategy is.</h2>
+        <p class="lead">Most professionals don’t lose to AI—they lose to people who use AI with better judgment. The goal here is simple: convert uncertainty into a clean plan you can execute immediately.</p>
+
+        <div class="grid grid-3" role="list" aria-label="Core pillars">
+          <div class="card" role="listitem" data-tone="strategy">
+            <h3>Position</h3>
+            <p>Define the lane where you stay valuable: decisions, taste, leadership, and ownership of outcomes.</p>
+          </div>
+          <div class="card" role="listitem" data-tone="strategy">
+            <h3>Leverage</h3>
+            <p>Use AI where it’s strongest—speed, recall, repetition—without surrendering authority or quality.</p>
+          </div>
+          <div class="card" role="listitem" data-tone="strategy">
+            <h3>Momentum</h3>
+            <p>Turn the plan into routines, assets, and compounding visibility—so your career trajectory accelerates.</p>
+          </div>
+        </div>
       </section>
 
       <section id="stakes">
-        <h2>Why This Matters Now</h2>
+        <div class="eyebrow">Why now</div>
+        <h2>The real shift: routine work becomes cheap.</h2>
         <p>We’re in a historic realignment. AI is reshaping value creation and redefining expertise across every sector. Staying on the “highway” of routine work invites automation. The alternative is the quieter off-road route—where judgment, taste, and leadership win.</p>
+
+        <div class="grid grid-2" aria-label="Signals and counter-moves">
+          <div class="card" data-tone="threat">
+            <h3>Threat pattern</h3>
+            <p>When your role becomes defined by repeatable tasks, it’s exposed. The risk isn’t AI itself—it’s being stuck in <span class="mark threat">routine work</span> with no leverage.</p>
+          </div>
+          <div class="card" data-tone="strategy">
+            <h3>Strategic counter-move</h3>
+            <p>Shift from tasks → decisions. From output → standards. From knowledge → positioning. That’s <span class="mark strategy">durable advantage</span>.</p>
+          </div>
+        </div>
       </section>
 
       <section id="solution">
+        <div class="eyebrow">The lab</div>
         <h2>The Single-Person AI Lab</h2>
         <p>The gap isn’t knowing about AI—it’s the lack of strategic clarity. qp Technologies LLC operates as a focused AI Lab, converting frontier research into clear, actionable frameworks you can apply immediately.</p>
+
+        <ul class="steps" aria-label="How it works">
+          <li class="step">
+            <div class="n" aria-hidden="true">1</div>
+            <p class="t"><strong>Diagnose:</strong> role, constraints, risk surface, and the automation boundary in your work.</p>
+          </li>
+          <li class="step">
+            <div class="n" aria-hidden="true">2</div>
+            <p class="t"><strong>Design:</strong> a leverage plan—processes, standards, and a simple operating cadence.</p>
+          </li>
+          <li class="step">
+            <div class="n" aria-hidden="true">3</div>
+            <p class="t"><strong>Deploy:</strong> tools and agents where they create durable advantage (not busywork).</p>
+          </li>
+          <li class="step">
+            <div class="n" aria-hidden="true">4</div>
+            <p class="t"><strong>Compound:</strong> convert the win into assets—templates, distribution, and partnerships.</p>
+          </li>
+        </ul>
       </section>
 
       <section id="transformation">
-        <h2>Outcomes You Can Expect</h2>
-        <ul>
-          <li><strong>Shift Your Paradigm:</strong> Treat AI as a leverage multiplier—not a threat.</li>
-          <li><strong>Strategic Leverage:</strong> Improve decision quality, efficiency, and impact.</li>
-          <li><strong>Indispensability:</strong> Become the bridge between emerging tech and results.</li>
-          <li><strong>Future Security:</strong> Open durable pathways for growth and autonomy.</li>
-        </ul>
+        <div class="eyebrow">Outcomes</div>
+        <h2>What you walk away with</h2>
+
+        <div class="grid grid-3" aria-label="Outcome cards">
+          <div class="card" data-tone="strategy">
+            <h3>Strategic clarity</h3>
+            <p>A crisp map of what matters, what to ignore, and where to focus for maximum career upside.</p>
+          </div>
+          <div class="card" data-tone="strategy">
+            <h3>Leverage system</h3>
+            <p>Practical workflows that improve speed and quality—without compromising standards.</p>
+          </div>
+          <div class="card" data-tone="strategy">
+            <h3>Indispensability</h3>
+            <p>A position where you translate AI capability into real results—and become hard to replace.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-2" style="margin-top: var(--space-3);" aria-label="Fit guidance">
+          <div class="card" data-tone="strategy">
+            <h3>Good fit</h3>
+            <ul>
+              <li>You lead decisions, not just tasks.</li>
+              <li>You want clarity and execution over hype.</li>
+              <li>You value calm, high standards, and clean systems.</li>
+            </ul>
+          </div>
+          <div class="card" data-tone="threat">
+            <h3>Not a fit</h3>
+            <ul>
+              <li>You want generic tools lists without a plan.</li>
+              <li>You’re optimizing for trend-chasing.</li>
+              <li>You’re looking for “magic prompts” with zero ownership.</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <div class="divider" role="separator" aria-hidden="true"></div>
 
       <section id="blueprint" class="links">
+        <div class="eyebrow">The map</div>
         <h2>What’s in the Hero Image?</h2>
         <p><strong>SOLO Founder BILLIONAIRE BLUEPRINT — From LABOR To LEGACY (No Hype)</strong></p>
         <ul>
@@ -498,11 +816,42 @@
           <li><strong>Step 4: Scale (Niche Agents):</strong> AI Speed Leverage | Professional prompts — <a href="https://qp.store" target="_blank" rel="noopener noreferrer">qp.store</a></li>
           <li><strong>Step 5: Legacy (Expert Playbook):</strong> Career Community | Keys to the Kingdom — <a href="https://youtube.com/@qualityprompt" target="_blank" rel="noopener noreferrer">youtube.com/@qualityprompt</a></li>
         </ul>
+        <p><a href="https://keep.beehiiv.com/p/qp" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:9px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.5);background:rgba(0,0,0,.25);text-decoration:none;">Read full blueprint →</a></p>
       </section>
 
-      <section id="cta" class="cta">
-        <h2>Ready to Lead in the AI Era?</h2>
-        <p>Email <a href="mailto:contact@qp.store">contact@qp.store</a> for a <strong>free single consultation</strong> (usual $999). Include your role, biggest AI obstacle, and desired outcome.</p>
+      <section id="cta">
+        <div class="eyebrow">Next step</div>
+        <div class="cta-panel" aria-label="Contact and partnership invitation">
+          <h2 class="cta-title">Email to start a free consultation or explore partnerships.</h2>
+          <p class="cta-sub">A short, high-signal exchange is the fastest path. Email is enough to begin—whether you want strategic clarity for your role, or you’re looking to partner with a like-minded builder.</p>
+
+          <div class="cta-email">
+            <div class="email-line">
+              <span class="email-label">Email</span>
+              <span class="email-value"><a href="mailto:contact@qp.store">contact@qp.store</a></span>
+            </div>
+            <p class="email-note"><strong>Free single consultation</strong> (usual $999), limited availability.</p>
+
+            <div class="cta-choices" aria-label="Email templates">
+              <div class="choice">
+                <b>Consultation</b>
+                <span>
+                  Subject:
+                  <a href="mailto:contact@qp.store?subject=Free%20Consultation%20%E2%80%94%20%5BYour%20Role%5D&body=Role%3A%20%5BYour%20role%5D%0A%0ABiggest%20AI%20obstacle%3A%20%5BOne%20sentence%5D%0A%0ADesired%20outcome%3A%20%5BOne%20sentence%5D%0A%0AContext%20(optional)%3A%20%5BLinks%20or%20notes%5D">Free Consultation — [Your Role]</a>
+                </span>
+              </div>
+              <div class="choice">
+                <b>Partnerships</b>
+                <span>
+                  Subject:
+                  <a href="mailto:contact@qp.store?subject=Partnership%20Inquiry%20%E2%80%94%20%5BYour%20Name%20%2F%20Company%5D&body=Who%20you%20are%3A%20%5BName%2C%20company%2C%20location%5D%0A%0AWhat%20you%E2%80%99re%20building%3A%20%5BOne%20paragraph%5D%0A%0AWhy%20this%20fits%20keep%E2%84%A2%EF%B8%8F%3A%20%5BOne%20paragraph%5D%0A%0ABest%20next%20step%3A%20%5BCall%2C%20email%2C%20docs%5D">Partnership Inquiry — [Your Name / Company]</a>
+                </span>
+              </div>
+            </div>
+
+            <p class="email-note" style="margin-top: 6px;">Prefer scheduling? You can also use <a href="https://cal.com/qp" target="_blank" rel="noopener noreferrer">cal.com/qp</a>, but email remains the fastest route for context.</p>
+          </div>
+        </div>
       </section>
     </div>
   </main>
@@ -564,9 +913,7 @@
         im.onload = ()=>{
           if(im.decode){
             im.decode().then(()=>resolve(src)).catch(()=>resolve(src));
-          } else {
-            resolve(src);
-          }
+          } else { resolve(src); }
         };
         im.onerror = reject;
         im.src = src;
@@ -621,7 +968,6 @@
         frames[0]=a; frames[1]=b;
 
         baseEl.src = frames[frontIndex];
-
         await waitForImg(baseEl);
         heroEl.classList.add("is-ready");
 
@@ -630,7 +976,6 @@
         baseEl.src = frames[0];
         heroEl.classList.add("is-ready");
       }
-
       document.getElementById("year").textContent = new Date().getFullYear();
     })();
 
