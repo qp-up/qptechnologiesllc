@@ -659,11 +659,35 @@
       border-radius: var(--img-radius);
       overflow: hidden;
       flex: 0 0 auto;
-      background: rgba(255,255,255,0.06);
       border: 1px solid rgba(192,200,216,0.34);
       box-shadow: 0 18px 70px rgba(0,0,0,.22);
       position: relative;
+      background:
+        radial-gradient(900px 520px at 30% 20%, rgba(255,255,255,.08), transparent 55%),
+        radial-gradient(700px 460px at 70% 75%, rgba(255,255,255,.06), transparent 60%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 22px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 1px, transparent 1px 22px),
+        rgba(0,32,96,0.70);
+      backdrop-filter: saturate(110%) blur(2px);
     }
+
+    .img-chip::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(120deg,
+        transparent 0%,
+        rgba(255,255,255,.08) 45%,
+        rgba(255,255,255,.12) 50%,
+        rgba(255,255,255,.08) 55%,
+        transparent 100%);
+      transform: translateX(-40%);
+      animation: heroShimmer 1400ms ease-in-out infinite;
+      pointer-events:none;
+      z-index: 1;
+      opacity: 0.95;
+    }
+
     .img-chip::after{
       content:"";
       position:absolute;
@@ -674,6 +698,7 @@
         inset 0 0 0 1px rgba(255,255,255,0.08),
         inset 0 18px 44px rgba(255,255,255,0.055);
       opacity: .92;
+      z-index: 2;
     }
 
     .img-chip img{
@@ -683,6 +708,27 @@
       object-fit: cover;
       transform: translateZ(0);
       filter: saturate(104%) contrast(104%);
+      opacity: 0;
+      transition: opacity 320ms ease;
+      will-change: opacity;
+      position: relative;
+      z-index: 3;
+    }
+
+    .img-chip.is-loaded{
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: none;
+    }
+    .img-chip.is-loaded::before{
+      opacity: 0;
+      animation: none;
+      transition: opacity 260ms ease;
+    }
+    .img-chip.is-loaded img{ opacity: 1; }
+
+    @media (prefers-reduced-motion: reduce){
+      .img-chip::before{ animation:none; }
+      .img-chip img{ transition:none; }
     }
 
     footer{
@@ -1147,14 +1193,70 @@
         img.loading = 'lazy';
         img.decoding = 'async';
         img.alt = '';
-        img.src = `qp/${i}.png`;
+        img.dataset.src = `qp/${i}.png`;
 
         chip.appendChild(img);
         FRAG.appendChild(chip);
       }
 
       a.appendChild(FRAG);
+
       b.innerHTML = a.innerHTML;
+
+      function markLoaded(img){
+        const chip = img.closest('.img-chip');
+        if (chip) chip.classList.add('is-loaded');
+      }
+
+      function wire(img){
+        const done = () => {
+          if (img.decode) img.decode().catch(()=>{}).finally(()=>markLoaded(img));
+          else markLoaded(img);
+        };
+        img.addEventListener('load', done, { once:true });
+        img.addEventListener('error', () => markLoaded(img), { once:true });
+      }
+
+      const allImgs = Array.from(track.querySelectorAll('img[data-src]'));
+      allImgs.forEach(wire);
+
+      const queue = allImgs.slice();
+      const FIRST = 12;
+
+      for (let i = 0; i < FIRST && queue.length; i++) {
+        const im = queue.shift();
+        im.src = im.dataset.src;
+        im.removeAttribute('data-src');
+        try { im.fetchPriority = 'high'; } catch {}
+      }
+
+      function pump(deadline){
+        let budgetOk = true;
+        let loaded = 0;
+        while (queue.length && budgetOk) {
+          const im = queue.shift();
+          im.src = im.dataset.src;
+          im.removeAttribute('data-src');
+          try { im.fetchPriority = 'low'; } catch {}
+          loaded++;
+
+          if (deadline && typeof deadline.timeRemaining === 'function') {
+            budgetOk = deadline.timeRemaining() > 8 && loaded < 8;
+          } else {
+            budgetOk = loaded < 6;
+          }
+        }
+        if (queue.length) schedule();
+      }
+
+      function schedule(){
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(pump, { timeout: 650 });
+        } else {
+          setTimeout(() => pump(null), 40);
+        }
+      }
+      schedule();
 
       function parseSeconds(v){
         const n = parseFloat(String(v).trim().replace('s',''));
