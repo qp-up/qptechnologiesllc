@@ -3,27 +3,30 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>keep™️</title>
+
+  <title>keep up™️ | AI Strategy for Ambitious Professionals — qp Technologies LLC</title>
+  <meta name="title" content="keep up™️ | AI Strategy for Ambitious Professionals — qp Technologies LLC" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="canonical" href="https://qptechnologiesllc.com/" />
-  <meta name="description" content="qp Technologies LLC is a single-person AI Lab delivering cutting-edge, consumer-centric, intelligent software solutions. Transform AI from a threat into strategic advantage with calm, unobvious human insight—no hype, no code required." />
+  <meta name="description" content="keep up™️ — AI Strategy for Ambitious Professionals. A calm, no-hype operating system to turn AI disruption into strategic advantage with clean decisions, leverage systems, and compounding visibility." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#002060" />
   <meta property="og:locale" content="en_US" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="keep™️" />
-  <meta property="og:title" content="Transform AI Into Strategic Advantage" />
-  <meta property="og:description" content="keep™️ — cutting-edge, consumer-centric, Intelligent Software Solutions. A clear, no-hype blueprint from labor to legacy." />
+  <meta property="og:title" content="keep up™️ | AI Strategy for Ambitious Professionals" />
+  <meta property="og:description" content="keep up™️ — calm, no-hype AI strategy for ambitious professionals. Convert uncertainty into a clean plan you can execute immediately." />
   <meta property="og:url" content="https://qptechnologiesllc.com/" />
   <meta property="og:image" content="https://qptechnologiesllc.com/qp.png" />
-  <meta property="og:image:alt" content="SOLO Founder — BILLIONAIRE BLUEPRINT: From Labor to Legacy (No Hype)." />
+  <meta property="og:image:alt" content="keep up™️ — Transform AI Into Strategic Advantage (No Hype)." />
+
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Transform AI Into Strategic Advantage" />
+  <meta name="twitter:title" content="keep up™️ | AI Strategy for Ambitious Professionals" />
   <meta name="twitter:description" content="Calm, unobvious human insight paired with intelligent automation." />
   <meta name="twitter:image" content="https://qptechnologiesllc.com/qp.png" />
 
@@ -246,7 +249,10 @@
       backdrop-filter: saturate(110%) blur(2px);
     }
     .hero.is-ready .hero-loader{ opacity: 0; visibility: hidden; }
+
+    /* keep structure: inner exists but visually hidden */
     .hero-loader-inner{ display:none; }
+
     .hero-spinner{
       width: 22px; height: 22px;
       border-radius: 999px;
@@ -511,19 +517,19 @@
       text-decoration: none;
       border-bottom: none;
     }
-    
+
     .blueprint-btn .lr-arrow{
       display: inline-block;
       will-change: transform;
       animation: lr-nudge 1.9s ease-in-out infinite;
     }
-    
+
     @keyframes lr-nudge{
       0%, 62%, 100% { transform: translateX(0); }
       78%          { transform: translateX(7px); }
       88%          { transform: translateX(0); }
     }
-    
+
     @media (prefers-reduced-motion: reduce){
       .blueprint-btn .lr-arrow{ animation: none; }
     }
@@ -807,6 +813,19 @@
     .foot-brand{ display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
     .foot-logo{ width:36px; height:36px; object-fit:contain; }
     .tagline{ margin-top:8px; font-size:14px; color:rgba(255,255,255,0.7); }
+
+    /* Optional: make skip-link usable when focused without changing structure */
+    .skip:focus{
+      left: 12px !important;
+      top: 12px !important;
+      width: auto !important;
+      height: auto !important;
+      padding: 10px 12px;
+      background: rgba(0,32,96,0.92);
+      color: #fff;
+      border-radius: 12px;
+      z-index: 9999;
+    }
   </style>
 
   <script type="application/ld+json">
@@ -827,7 +846,7 @@
         "provider": { "@type": "Organization", "name": "qp Technologies LLC" },
         "areaServed": "Worldwide",
         "serviceType": "AI Strategy, Automation Roadmapping, Career Risk Mitigation",
-        "description": "keep™️ — cutting-edge, consumer-centric, Intelligent Software Solutions — turning AI disruption into strategic leverage without code or hype.",
+        "description": "keep up™️ — calm, no-hype AI strategy for ambitious professionals — turning AI disruption into strategic leverage without code or hype.",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -856,7 +875,7 @@
     </div>
   </div>
 
-  <a href="#intro" class="skip" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
+  <a href="#blueprint" class="skip" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
 
   <div class="hero" aria-label="Strategic blueprint visuals">
     <img id="base" class="frame" alt="Strategic blueprint visual: road-trip truck from the Billionaire Blueprint hero." loading="eager" decoding="async">
@@ -869,7 +888,7 @@
       </div>
     </div>
 
-    <a href="#intro" class="scroll-hint" aria-label="Scroll to details">
+    <a href="#blueprint" class="scroll-hint" aria-label="Scroll to blueprint">
       <svg class="scroll-arrow" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 4v14m0 0l-6-6m6 6l6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -879,10 +898,41 @@
 
   <main>
     <div class="container">
+
+      <!-- Blueprint MUST be at the top -->
+      <section id="blueprint" class="links">
+        <div class="eyebrow">The map</div>
+        <h1>keep up™️</h1>
+
+        <p class="lead" style="margin-top: 6px;">
+          <strong>AI Strategy for Ambitious Professionals</strong>
+        </p>
+
+        <p class="lead" style="margin-top: 8px;">
+          Transform AI into strategic advantage with calm, no-hype operating systems—so you stay on the side of leverage, not replacement.
+        </p>
+
+        <ul>
+          <li><strong>Step 1: Legal (Career Protection):</strong> Company Formation | Career as a Business — qptechnologiesllc.com</li>
+          <li><strong>Step 2: Brand (SEO Presence):</strong> Blog / Niche Newsletter | Authority &amp; Identity — <a href="https://keep.beehiiv.com" target="_blank" rel="noopener noreferrer">keep.beehiiv.com</a></li>
+          <li><strong>Step 3: Network (Consult – Connect):</strong> Client Portal | Partnerships — <a href="https://cal.com/qp" target="_blank" rel="noopener noreferrer">cal.com/qp</a></li>
+          <li><strong>Step 4: Scale (Niche Agents):</strong> AI Speed Leverage | Professional prompts — <a href="https://qp.store" target="_blank" rel="noopener noreferrer">qp.store</a></li>
+          <li><strong>Step 5: Legacy (Expert Playbook):</strong> Career Community | Keys to the Kingdom — <a href="https://youtube.com/@qualityprompt" target="_blank" rel="noopener noreferrer">youtube.com/@qualityprompt</a></li>
+        </ul>
+
+        <p>
+          <a
+            href="https://keep.beehiiv.com/p/qp"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="blueprint-btn"
+          >
+            <strong>Read full blueprint <span class="lr-arrow" aria-hidden="true">→</span></strong>
+          </a>
+        </p>
+      </section>
+
       <section id="intro">
-        <div class="eyebrow">keep™️</div>
-        <h1>Transform AI Into Your Strategic Advantage</h1>
-        <p class="lead">A calm, no-hype operating system for ambitious professionals—so you stay on the side of leverage, not replacement.</p>
         <div class="kicker" aria-label="Key signals">
           <span class="pill"><span class="dot"></span>No code required</span>
           <span class="pill"><span class="dot threat"></span>Threat: AUTOMATION</span>
@@ -994,29 +1044,6 @@
       </section>
 
       <div class="divider" role="separator" aria-hidden="true"></div>
-
-      <section id="blueprint" class="links">
-        <div class="eyebrow">The map</div>
-        <h2>keep up™️</h2>
-        <p><strong>AI Strategy for Ambitious Professionals</strong></p>
-        <ul>
-          <li><strong>Step 1: Legal (Career Protection):</strong> Company Formation | Career as a Business — qptechnologiesllc.com</li>
-          <li><strong>Step 2: Brand (SEO Presence):</strong> Blog / Niche Newsletter | Authority &amp; Identity — <a href="https://keep.beehiiv.com" target="_blank" rel="noopener noreferrer">keep.beehiiv.com</a></li>
-          <li><strong>Step 3: Network (Consult – Connect):</strong> Client Portal | Partnerships — <a href="https://cal.com/qp" target="_blank" rel="noopener noreferrer">cal.com/qp</a></li>
-          <li><strong>Step 4: Scale (Niche Agents):</strong> AI Speed Leverage | Professional prompts — <a href="https://qp.store" target="_blank" rel="noopener noreferrer">qp.store</a></li>
-          <li><strong>Step 5: Legacy (Expert Playbook):</strong> Career Community | Keys to the Kingdom — <a href="https://youtube.com/@qualityprompt" target="_blank" rel="noopener noreferrer">youtube.com/@qualityprompt</a></li>
-        </ul>
-        <p>
-          <a
-            href="https://keep.beehiiv.com/p/qp"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="blueprint-btn"
-          >
-            <strong>Read full blueprint <span class="lr-arrow" aria-hidden="true">→</span></strong>
-          </a>
-        </p>
-      </section>
 
       <section id="cta">
         <div class="eyebrow">Next step</div>
@@ -1189,7 +1216,7 @@
 
     (function () {
       const btn = document.querySelector('.scroll-hint');
-      const target = document.getElementById('intro');
+      const target = document.getElementById('blueprint');
       if (!btn || !target) return;
       btn.addEventListener('click', function (e) {
         e.preventDefault();
@@ -1202,7 +1229,7 @@
 
     (function () {
       const btn = document.querySelector('.scroll-hint');
-      const target = document.getElementById('intro');
+      const target = document.getElementById('blueprint');
       if (!btn || !target || !('IntersectionObserver' in window)) return;
 
       const observer = new IntersectionObserver((entries) => {
@@ -1273,7 +1300,6 @@
       const MAX_IN_FLIGHT = 3;
 
       let loadedCount = 0;
-      const LOADING_MIN = 18;
 
       function markLoaded(img){
         const chip = img.closest('.img-chip');
